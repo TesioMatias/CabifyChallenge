@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">CabifyShop</string>
+    <string name="mug">Mug</string>
+    <string name="discounted_price">$ 250</string>
+    <string name="price">$ 300</string>
+    <string name="empty_state">This seems a bit weird but...\n ...the list appears to be empty</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="go_to_catalog">Go to catalog</string>
+    <string name="afterr_qty_base_text">This discount applies after buying %d products</string>
+    <string name="base_discount_code_text">Discount applies for %s</string>
+    <string name="go_to_cart">go to cart</string>
+    <string name="total_price">Total</string>
+    <string name="proceed_to_checkout">Proceed to checkout</string>
+    <string name="clear_cart">Clear cart</string>
+</resources>

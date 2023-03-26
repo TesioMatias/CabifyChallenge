@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:importantForAccessibility="no"
+    android:focusableInTouchMode="true">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progress_loader"
+        android:layout_width="@dimen/dimen_100"
+        android:layout_height="@dimen/dimen_100"
+        android:layout_marginTop="@dimen/dimen_100"
+        android:adjustViewBounds="true"
+        android:importantForAccessibility="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/empty_state_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_state"
+        android:textSize="@dimen/text_20"
+        android:textStyle="bold"
+        android:contentDescription="@string/empty_state"
+        android:importantForAccessibility="yes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progress_loader"
+        android:layout_marginTop="@dimen/dimen_30"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/discounts_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:padding="@dimen/dimen_8"
+        app:layout_constraintBottom_toTopOf="@+id/go_to_catalog_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/go_to_catalog_button"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimen_60"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginHorizontal="@dimen/dimen_16"
+        android:text="@string/go_to_catalog"
+        android:importantForAccessibility="yes"
+        android:contentDescription="@string/go_to_catalog"
+        app:icon="@drawable/products"
+        app:iconSize="@dimen/dimen_25"
+        app:iconGravity="textStart"
+        app:iconPadding="@dimen/dimen_30"
+        app:layout_constraintBottom_toTopOf="@+id/go_to_cart_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/go_to_cart_button"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimen_60"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginHorizontal="@dimen/dimen_16"
+        android:text="@string/go_to_cart"
+        android:importantForAccessibility="yes"
+        android:contentDescription="@string/go_to_cart"
+        app:icon="@drawable/cart"
+        app:iconSize="@dimen/dimen_25"
+        app:iconGravity="textStart"
+        app:iconPadding="@dimen/dimen_30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

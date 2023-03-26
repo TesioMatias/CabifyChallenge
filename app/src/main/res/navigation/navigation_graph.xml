@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.matiastesio.cabify.ui.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/splash_fragment">
+        <action
+            android:id="@+id/action_splash_fragment_to_product_list_fragment"
+            app:destination="@id/catalogFragment"
+            app:popUpTo="@+id/splashFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="com.matiastesio.cabify.ui.catalog.CatalogFragment"
+        android:label="ProductListFragment"
+        tools:layout="@layout/catalog_fragment">
+        <action
+            android:id="@+id/action_catalogFragment_to_detailsFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/detailFragment"
+        android:name="com.matiastesio.cabify.ui.details.DetailsFragment"
+        android:label="detailsFragment"
+        tools:layout="@layout/detail_fragment">
+        <argument
+            android:name="code"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detailFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/discountsFragment"
+        android:name="com.matiastesio.cabify.ui.discounts.DiscountsFragment"
+        android:label="DiscountsFragment"
+        tools:layout="@layout/discounts_fragment">
+        <action
+            android:id="@+id/action_discountsFragment_to_catalogFragment"
+            app:destination="@id/catalogFragment" />
+        <action
+            android:id="@+id/action_discountsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.matiastesio.cabify.ui.cart.CartFragment"
+        android:label="CartFragment"
+        tools:layout="@layout/discounts_fragment">
+        <action
+            android:id="@+id/action_cartFragment_to_catalogFragment"
+            app:destination="@id/catalogFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/checkoutFragment"
+        android:name="com.matiastesio.cabify.ui.checkout.CheckoutFragment"
+        android:label="CheckoutFragment"
+        tools:layout="@layout/checkout_fragment">
+        <action
+            android:id="@+id/action_checkoutFragment_to_catalogFragment"
+            app:destination="@id/catalogFragment" />
+    </dialog>
+
+</navigation>
