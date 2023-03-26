@@ -7,9 +7,13 @@ class FlatPriceStrategy : PriceStrategy {
         quantity: Int,
         afterQty: Int
     ): Double =
-        if (quantity >= afterQty) {
+        if (discount > 0 && quantity > 0 && quantity >= afterQty) {
             discount * quantity
         } else {
-            price * quantity
+            if (price > 0 && quantity > 0) {
+                price * quantity
+            } else {
+                0.0
+            }
         }
 }
