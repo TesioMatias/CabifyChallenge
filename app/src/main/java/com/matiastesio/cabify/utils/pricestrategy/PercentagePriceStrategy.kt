@@ -7,10 +7,13 @@ class PercentagePriceStrategy : PriceStrategy {
         quantity: Int,
         afterQty: Int
     ): Double =
-        if (quantity >= afterQty) {
+        if (price > 0 && discount > 0 && quantity > 0 && quantity >= afterQty) {
             price * discount * quantity
         } else {
-            price * quantity
+            if (price > 0 && quantity > 0) {
+                price * quantity
+            } else {
+                0.0
+            }
         }
-
 }
