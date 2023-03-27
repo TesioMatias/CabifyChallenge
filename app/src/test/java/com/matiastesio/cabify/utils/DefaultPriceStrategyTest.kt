@@ -1,7 +1,6 @@
 package com.matiastesio.cabify.utils
 
 import com.matiastesio.cabify.utils.pricestrategy.DefaultPriceStrategy
-import io.mockk.MockKAnnotations
 import junit.framework.TestCase.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -12,7 +11,6 @@ class DefaultPriceStrategyTest {
 
     @Before
     fun onBefore() {
-        MockKAnnotations.init(this)
         defaultPriceStrategy = DefaultPriceStrategy()
     }
 
