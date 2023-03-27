@@ -7,6 +7,12 @@ import javax.inject.Inject
 class StoreCatalogUseCase @Inject constructor(
     private val catalogRepository: CatalogRepository
 ) {
-    suspend operator fun invoke(list: List<CatalogItemModel>) =
-        catalogRepository.store(list)
+    suspend operator fun invoke(list: List<CatalogItemModel>): Boolean =
+        try {
+            catalogRepository.store(list)
+            true
+        } catch (e: java.lang.Exception) {
+            false
+        }
+
 }

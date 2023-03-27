@@ -6,5 +6,12 @@ import javax.inject.Inject
 class ClearCartUseCase @Inject constructor(
     private val cartRepository: CartRepository
 ) {
-    suspend operator fun invoke() = cartRepository.clearCart()
+    suspend operator fun invoke(): Boolean =
+        try {
+            cartRepository.clearCart()
+            true
+        } catch (e: java.lang.Exception) {
+            false
+        }
+
 }

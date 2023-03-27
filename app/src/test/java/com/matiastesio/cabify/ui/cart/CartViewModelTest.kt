@@ -49,7 +49,7 @@ class CartViewModelTest {
         runTest {
             // Given
             coEvery { getCartUseCase() } returns CartDataSource.getCartItems
-            coEvery { clearCartUseCase() } returns Unit
+            coEvery { clearCartUseCase() } returns true
 
             // When
             cartViewModel.getCart()
@@ -76,7 +76,7 @@ class CartViewModelTest {
     fun `given a correct clear cart use case then go to catalog`() =
         runTest {
             // Given
-            coEvery { clearCartUseCase() } returns Unit
+            coEvery { clearCartUseCase() } returns true
 
             // When
             cartViewModel.clearCart()

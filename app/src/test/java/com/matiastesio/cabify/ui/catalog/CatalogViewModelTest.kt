@@ -66,7 +66,7 @@ class CatalogViewModelTest {
                     CatalogTestDataSource.getDiscountList
                 )
             } returns CatalogTestDataSource.getCatalogList
-            coEvery { storeCatalogUseCase(CatalogTestDataSource.getCatalogList) } returns Unit
+            coEvery { storeCatalogUseCase(CatalogTestDataSource.getCatalogList) } returns true
 
             // When
             catalogViewModel.getProducts()

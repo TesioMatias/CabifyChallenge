@@ -13,6 +13,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,20 +38,25 @@ class CatalogViewModel @Inject constructor(
 
     fun getProducts() {
         viewModelScope.launch(handler) {
-            _isLoading.postValue(true)
+            supervisorScope {
+                _isLoading.postValue(true)
 
-            val productResponse = getProductsUseCase()
-            val discountsResponse = getDiscountsUseCase()
+                val productResponse = async { getProductsUseCase() }
+                val discountsResponse = async { getDiscountsUseCase() }
 
-            val result = catalogMapper.mapResponseToModel(
-                productResponse,
-                discountsResponse
-            )
+                val prodResponse = productResponse.await()
+                val discResponse = discountsResponse.await()
 
-            storeCatalogUseCase(result)
+                val result = catalogMapper.mapResponseToModel(
+                    prodResponse,
+                    discResponse
+                )
 
-            _isLoading.postValue(false)
-            _catalogItems.postValue(result)
+                val storeState = storeCatalogUseCase(result)
+
+                _isLoading.postValue(!storeState)
+                _catalogItems.postValue(result)
+            }
         }
     }
 }
