@@ -6,25 +6,21 @@ import com.matiastesio.cabify.data.model.DiscountModel
 
 class CatalogDaoMapper : DaoCatalogMapper {
 
-    override fun toEntity(list: List<CatalogItemModel>): List<CatalogEntity> {
-        val entityList: MutableList<CatalogEntity> = mutableListOf()
-        list.forEach { item ->
-            entityList.add(
-                CatalogEntity(
-                    code = item.code,
-                    name = item.name,
-                    price = item.price,
-                    icon = item.icon,
-                    title = item.discount?.title ?: "",
-                    afterQty = item.discount?.afterQty ?: -1,
-                    discount = item.discount?.discount ?: -1.0,
-                    discountType = item.discount?.discountType ?: ""
-                )
+    override fun toEntity(list: List<CatalogItemModel>?): List<CatalogEntity> =
+        list?.map { item ->
+            CatalogEntity(
+                code = item.code,
+                name = item.name,
+                price = item.price,
+                icon = item.icon,
+                title = item.discount?.title ?: "",
+                afterQty = item.discount?.afterQty ?: -1,
+                discount = item.discount?.discount ?: -1.0,
+                discountType = item.discount?.discountType ?: ""
             )
+        } ?: run {
+            listOf()
         }
-
-        return entityList
-    }
 
     override fun fromEntity(entity: CatalogEntity): CatalogItemModel {
         return CatalogItemModel(

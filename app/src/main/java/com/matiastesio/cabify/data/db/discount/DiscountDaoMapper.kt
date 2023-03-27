@@ -5,28 +5,24 @@ import com.matiastesio.cabify.data.network.response.discount.DiscountItem
 import com.matiastesio.cabify.data.network.response.discount.DiscountResponse
 
 class DiscountDaoMapper : DaoDiscountMapper {
-    override fun mapToDao(list: List<DiscountItem>?): List<DiscountEntity> {
-        val listOfEntities = mutableListOf<DiscountEntity>()
-        list?.forEach {
-            listOfEntities.add(
-                DiscountEntity(
-                    code = it.code,
-                    title = it.title,
-                    discount = it.discount,
-                    discountType = it.discountType,
-                    afterQty = it.afterQty
-                )
+    override fun mapToDao(list: List<DiscountItem>?): List<DiscountEntity> =
+        list?.map { it ->
+            DiscountEntity(
+                code = it.code,
+                title = it.title,
+                discount = it.discount,
+                discountType = it.discountType,
+                afterQty = it.afterQty
             )
+        } ?: run {
+            listOf()
         }
-        return listOfEntities
-    }
 
     override fun mapFromDao(allProducts: List<DiscountEntity>?): DiscountResponse =
         DiscountResponse(mapToList(allProducts))
 
-    private fun mapToList(allProducts: List<DiscountEntity>?): List<DiscountItem> {
-        val list = mutableListOf<DiscountItem>()
-        allProducts?.forEach {
+    private fun mapToList(allProducts: List<DiscountEntity>?): List<DiscountItem> =
+        allProducts?.map { it ->
             DiscountItem(
                 code = it.code,
                 title = it.title,
@@ -34,8 +30,7 @@ class DiscountDaoMapper : DaoDiscountMapper {
                 discountType = it.discountType,
                 afterQty = it.afterQty
             )
+        } ?: run {
+            listOf()
         }
-        return list
-    }
-
 }
