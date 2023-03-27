@@ -18,25 +18,20 @@ class CartDaoMapper : DaoCartMapper {
             quantity = 1
         )
 
-    override fun fromEntity(items: List<CartEntity>?): List<CartItemModel> {
-        val list = mutableListOf<CartItemModel>()
-        items?.let {
-            items.forEach {
-                list.add(
-                    CartItemModel(
-                        code = it.code,
-                        name = it.name,
-                        price = it.price,
-                        icon = it.icon,
-                        title = it.title,
-                        afterQty = it.afterQty,
-                        discount = it.discount,
-                        discountType = it.discountType,
-                        quantity = it.quantity
-                    )
-                )
-            }
+    override fun fromEntity(items: List<CartEntity>?): List<CartItemModel> =
+        items?.map { it ->
+            CartItemModel(
+                code = it.code,
+                name = it.name,
+                price = it.price,
+                icon = it.icon,
+                title = it.title,
+                afterQty = it.afterQty,
+                discount = it.discount,
+                discountType = it.discountType,
+                quantity = it.quantity
+            )
+        } ?: run {
+            listOf()
         }
-        return list
-    }
 }

@@ -12,11 +12,7 @@ class CatalogMapperImpl : CatalogMapper {
         discountList: List<DiscountEntity>?
     ): List<CatalogItemModel> =
         productList?.let {
-            val list = mutableListOf<CatalogItemModel>()
-            productList.forEach {
-                list.add(mapItem(it, discountList))
-            }
-            list
+            it.map { item -> mapItem(item, discountList) }
         } ?: run {
             listOf()
         }
@@ -24,15 +20,15 @@ class CatalogMapperImpl : CatalogMapper {
     private fun mapItem(
         item: ProductEntity,
         discountList: List<DiscountEntity>?
-    ): CatalogItemModel {
-        return CatalogItemModel(
+    ): CatalogItemModel =
+        CatalogItemModel(
             code = item.code,
             name = item.name,
             price = item.price,
             icon = item.icon,
             discount = getDiscount(item.code, discountList)
         )
-    }
+
 
     private fun getDiscount(code: String?, discountList: List<DiscountEntity>?): DiscountModel? {
         discountList?.forEach {
