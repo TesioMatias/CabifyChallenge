@@ -48,8 +48,8 @@ class CartViewModel @Inject constructor(
 
     fun clearCart() {
         viewModelScope.launch(handler) {
-            clearCartUserCase()
-            _doReturnToCatalog.postValue(true)
+            val result = clearCartUserCase()
+            _doReturnToCatalog.postValue(result)
         }
     }
 
