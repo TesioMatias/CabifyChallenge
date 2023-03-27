@@ -1,7 +1,6 @@
 package com.matiastesio.cabify.utils
 
 import com.matiastesio.cabify.utils.pricestrategy.FlatPriceStrategy
-import io.mockk.MockKAnnotations
 import junit.framework.TestCase
 import org.junit.Before
 import org.junit.Test
@@ -12,7 +11,6 @@ class FlatPriceStrategyTest {
 
     @Before
     fun onBefore() {
-        MockKAnnotations.init(this)
         flatPriceStrategy = FlatPriceStrategy()
     }
 
@@ -25,7 +23,8 @@ class FlatPriceStrategyTest {
         val afterQty = 2
 
         // When
-        val priceCalculated = flatPriceStrategy.calculatePrice(price, discountedPrice, quantity, afterQty)
+        val priceCalculated =
+            flatPriceStrategy.calculatePrice(price, discountedPrice, quantity, afterQty)
 
         // Then
         TestCase.assertEquals(27.0, priceCalculated)
@@ -40,7 +39,8 @@ class FlatPriceStrategyTest {
         val afterQty = 2
 
         // When
-        val priceCalculated = flatPriceStrategy.calculatePrice(price, discountedPrice, quantity, afterQty)
+        val priceCalculated =
+            flatPriceStrategy.calculatePrice(price, discountedPrice, quantity, afterQty)
 
         // Then
         TestCase.assertEquals(0.0, priceCalculated)
@@ -55,7 +55,8 @@ class FlatPriceStrategyTest {
         val afterQty = 2
 
         // When
-        val priceCalculated = flatPriceStrategy.calculatePrice(price, discountedPrice, quantity, afterQty)
+        val priceCalculated =
+            flatPriceStrategy.calculatePrice(price, discountedPrice, quantity, afterQty)
 
         // Then
         TestCase.assertEquals(30.0, priceCalculated)
@@ -70,7 +71,8 @@ class FlatPriceStrategyTest {
         val afterQty = 4
 
         // When
-        val priceCalculated = flatPriceStrategy.calculatePrice(price, discountedPrice, quantity, afterQty)
+        val priceCalculated =
+            flatPriceStrategy.calculatePrice(price, discountedPrice, quantity, afterQty)
 
         // Then
         TestCase.assertEquals(30.0, priceCalculated)
@@ -85,7 +87,8 @@ class FlatPriceStrategyTest {
         val afterQty = 4
 
         // When
-        val priceCalculated = flatPriceStrategy.calculatePrice(price, discountedPrice, quantity, afterQty)
+        val priceCalculated =
+            flatPriceStrategy.calculatePrice(price, discountedPrice, quantity, afterQty)
 
         // Then
         TestCase.assertEquals(0.0, priceCalculated)

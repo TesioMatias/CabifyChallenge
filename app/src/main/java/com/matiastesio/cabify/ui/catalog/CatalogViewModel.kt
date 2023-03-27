@@ -11,6 +11,7 @@ import com.matiastesio.cabify.domain.usecases.GetProductListUseCase
 import com.matiastesio.cabify.domain.usecases.StoreCatalogUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,7 +20,7 @@ class CatalogViewModel @Inject constructor(
     private val getProductsUseCase: GetProductListUseCase,
     private val getDiscountsUseCase: GetDiscountsUseCase,
     private val storeCatalogUseCase: StoreCatalogUseCase,
-    private val productMapper: CatalogMapper
+    private val catalogMapper: CatalogMapper
 ) : ViewModel() {
 
     private var _catalogItems = MutableLiveData<List<CatalogItemModel>>()
@@ -41,7 +42,7 @@ class CatalogViewModel @Inject constructor(
             val productResponse = getProductsUseCase()
             val discountsResponse = getDiscountsUseCase()
 
-            val result = productMapper.mapResponseToModel(
+            val result = catalogMapper.mapResponseToModel(
                 productResponse,
                 discountsResponse
             )

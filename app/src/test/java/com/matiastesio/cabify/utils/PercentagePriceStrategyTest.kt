@@ -1,7 +1,6 @@
 package com.matiastesio.cabify.utils
 
 import com.matiastesio.cabify.utils.pricestrategy.PercentagePriceStrategy
-import io.mockk.MockKAnnotations
 import junit.framework.TestCase
 import org.junit.Before
 import org.junit.Test
@@ -12,7 +11,6 @@ class PercentagePriceStrategyTest {
 
     @Before
     fun onBefore() {
-        MockKAnnotations.init(this)
         percentagePriceStrategy = PercentagePriceStrategy()
     }
 
